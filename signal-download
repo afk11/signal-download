@@ -9,6 +9,7 @@ certify_key="29:F3:4E:5F:27:F2:11:B4:24:BC:5B:F9:D6:71:62:C0:EA:FB:A2:DA:35:AF:3
 # Version must be provided
 if [ "$version" = "" ]; then
     echo "Missing signal version!"
+    echo "Usage: $0 <signal version>"
     exit 1
 fi
 
