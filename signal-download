@@ -47,19 +47,17 @@ keyout_test=$?
 # Cleanup cert, important stuff in memory
 rm $tmp_dir/$version.cert
 
-if [ $keyout_test != 0 ]; then
-    echo "Invalid signature on JAR file"
-    exit 1
-fi
-
 signing_sha256=$(echo "$keyout" | grep SHA256 | cut -d" " -f3)
-if [ "$signing_sha256" != "$certify_key" ]; then
+if [[ ( $keyout_test != 0 ) || ( "$signing_sha256" != "$certify_key" ) ]]; then
+    echo ""
     echo "FAILED TO VERIFY APK"
     echo "      GOT $signing_sha256"
     echo " EXPECTED $certify_key"
     echo ""
     echo "Download link: $download_link"
     echo "    File path: $unverified_dir/signal-$version.apk"
+    echo ""
+    echo "$keyout_test"
     exit 1
 fi
 
