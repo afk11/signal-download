@@ -58,6 +58,7 @@ if [ "$signing_sha256" != "$certify_key" ]; then
     echo " EXPECTED $certify_key"
     echo ""
     echo "Download link: $download_link"
+    echo "    File path: $unverified_dir/signal-$version.apk"
     exit 1
 fi
 
